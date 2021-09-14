@@ -15,7 +15,7 @@ def login(request):
     try:
         user = User.objects.get(email=email)
         token = Token.objects.get(user_id=user.id)
-        data = { 'token': token.key }
+        data = { token.key }
         return Response(data)
 
     except User.DoesNotExist:
@@ -26,7 +26,7 @@ def login(request):
         )
 
         token = Token.objects.create(user_id=user.id)
-        data = { 'token': token.key }
+        data = { token.key }
         return Response(data)
     
     except Exception as ex:
