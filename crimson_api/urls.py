@@ -13,11 +13,18 @@ Including another URLconf
     1. Import the include() function: from django.urls import include, path
     2. Add a URL to urlpatterns:  path('blog/', include('blog.urls'))
 """
+
 from django.contrib import admin
 from django.urls import path
-from crimson_server.views.auth import login
+from django.urls.conf import include
+from crimson_server.views import login, Profile
+from rest_framework import routers
+
+router = routers.DefaultRouter(trailing_slash=False)
+router.register(r'profile', Profile, 'profile')
 
 urlpatterns = [
     path('admin/', admin.site.urls),
     path('login', login),
+    path('', include(router.urls))
 ]
