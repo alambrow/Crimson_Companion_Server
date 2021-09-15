@@ -3,6 +3,7 @@
     "python.linting.pylintArgs": [
         "--load-plugins=pylint_django",
         "--django-settings-module=crimson_api.settings",
+        "--errors-only"
     ],
     "sqltools.connections": [
         {

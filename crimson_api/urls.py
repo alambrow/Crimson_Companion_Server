@@ -17,11 +17,13 @@ Including another URLconf
 from django.contrib import admin
 from django.urls import path
 from django.urls.conf import include
-from crimson_server.views import login, Profile
+from crimson_server.views import login, Profile, Essay, Student
 from rest_framework import routers
 
 router = routers.DefaultRouter(trailing_slash=False)
 router.register(r'profile', Profile, 'profile')
+router.register(r'essays', Essay, 'essay')
+router.register(r'students', Student, 'student')
 
 urlpatterns = [
     path('admin/', admin.site.urls),

@@ -1,0 +1,15 @@
+[
+    {
+        "model": "crimson_server.essay",
+        "pk": 1,
+        "fields": {
+            "student_id": 1,
+            "user_id": 1,
+            "topic": "Penn State Supplement",
+            "official_dd": "2021-09-30",
+            "floating_dd": "2021-09-20",
+            "is_complete": false,
+            "notes": "Extensive exercise, but strong writer"
+        }
+    }
+]
