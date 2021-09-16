@@ -1,6 +1,5 @@
 from crimson_server.models.CrimsonUser import CrimsonUser
 from django.db import models
-from crimson_server.models import CrimsonUser
 
 class Student(models.Model):
     user = models.ForeignKey("CrimsonUser", on_delete=models.CASCADE)

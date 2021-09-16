@@ -1,15 +1,14 @@
 from rest_framework.viewsets import ViewSet
 from rest_framework import serializers
 from rest_framework.response import Response
-from crimson_server.models import Essay
-from django.contrib.auth.models import User
+from crimson_server.models import Essay, CrimsonUser
 from django.http import HttpResponseServerError
 
-class Essay(ViewSet):
+class EssayView(ViewSet):
 
     def list(self, request):
         try:
-            user = User.objects.get(id=request.auth.user_id)
+            user = CrimsonUser.objects.get(id=request.auth.user_id)
             essays = Essay.objects.filter(user=user)
 
             serializer = EssaySerializer(

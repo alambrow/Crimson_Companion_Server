@@ -3,7 +3,7 @@
         "model": "crimson_server.student",
         "pk": 1,
         "fields": {
-            "user_id": 1,
+            "user_id": 2,
             "full_name": "Anagha Pai",
             "email": "anagha@pai.com",
             "drive_url": "drive.google.com",
