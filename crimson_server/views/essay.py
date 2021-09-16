@@ -10,7 +10,6 @@ class EssayView(ViewSet):
         try:
             user = CrimsonUser.objects.get(id=request.auth.user_id)
             essays = Essay.objects.filter(user=user)
-
             serializer = EssaySerializer(
                 essays, many=True, context={'request': request}
             )

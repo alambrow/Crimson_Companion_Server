@@ -9,5 +9,16 @@
             "drive_url": "drive.google.com",
             "is_active": true
         }
+    },
+    {
+        "model": "crimson_server.student",
+        "pk": 2,
+        "fields": {
+            "user_id": 2,
+            "full_name": "Maxim Ladoshin",
+            "email": "max@lad.com",
+            "drive_url": "drive.google.com",
+            "is_active": true
+        }
     }
 ]

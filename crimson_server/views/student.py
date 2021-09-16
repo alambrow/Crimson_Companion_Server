@@ -10,7 +10,6 @@ class StudentView(ViewSet):
         try:
             user = CrimsonUser.objects.get(id=request.auth.user_id)
             students = Student.objects.filter(user=user)
-
             serializer = StudentSerializer(students, many=True, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
