@@ -9,8 +9,7 @@ class Student(ViewSet):
 
     def list(self, request):
         try:
-            user = User.objects.get(id=request.auth.user_id)
-            students = Student.objects.filter(user=user)
+            students = Student.objects.all()
             serializer = StudentSerializer(students, many=True, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:

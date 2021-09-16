@@ -1,0 +1,9 @@
+[
+    {
+        "model": "crimson_server.crimsonuser",
+        "pk": 1,
+        "fields": {
+            "user": 1
+        }
+    }
+]
