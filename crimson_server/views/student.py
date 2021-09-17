@@ -2,7 +2,6 @@ from rest_framework.viewsets import ViewSet
 from rest_framework import serializers, status
 from rest_framework.response import Response
 from django.http import HttpResponseServerError
-from django.core.exceptions import ValidationError
 from crimson_server.models import Student, CrimsonUser
 
 class StudentView(ViewSet):
