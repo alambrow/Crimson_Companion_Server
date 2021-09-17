@@ -17,7 +17,7 @@ class StudentView(ViewSet):
     def list(self, request):
         try:
             user = CrimsonUser.objects.get(id=request.auth.user_id)
-            students = Student.objects.filter(user=user)
+            students = Student.objects.filter(user=user).order_by('full_name')
             serializer = StudentSerializer(students, many=True, context={'request': request})
             return Response(serializer.data)
         except Exception as ex:
