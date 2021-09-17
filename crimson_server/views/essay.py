@@ -70,7 +70,14 @@ class EssayView(ViewSet):
         except Exception as ex:
             return HttpResponseServerError(ex)
 
+class StudentSerializer(serializers.ModelSerializer):
+    class Meta:
+        model = Student
+        fields = ('id', 'full_name', 'email', 'drive_url', 'is_active', 'user_id')
+
 class EssaySerializer(serializers.ModelSerializer):
+    student = StudentSerializer(many=False)
+
     class Meta:
         model = Essay
         fields = ('id', 'student', 'topic', 'official_dd', 'floating_dd', 'is_complete', 'notes', )
