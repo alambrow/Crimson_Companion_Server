@@ -9,7 +9,14 @@ class EssayView(ViewSet):
     def list(self, request):
         try:
             user = CrimsonUser.objects.get(id=request.auth.user_id)
-            essays = Essay.objects.filter(user=user)
+            
+            student = self.request.query_params.get('student', None)
+
+            if student is not None:
+                essays = Essay.objects.filter(user=user, student=student).order_by('official_dd')
+            else:
+                essays = Essay.objects.filter(user=user).order_by('official_dd')
+            
             serializer = EssaySerializer(
                 essays, many=True, context={'request': request}
             )
