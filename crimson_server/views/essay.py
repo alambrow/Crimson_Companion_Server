@@ -3,6 +3,7 @@ from rest_framework import serializers, status
 from rest_framework.response import Response
 from crimson_server.models import Essay, CrimsonUser, Student
 from django.http import HttpResponseServerError
+import datetime
 
 class EssayView(ViewSet):
 
@@ -11,9 +12,17 @@ class EssayView(ViewSet):
             user = CrimsonUser.objects.get(id=request.auth.user_id)
             
             student = self.request.query_params.get('student', None)
+            upcoming = self.request.query_params.get('upcoming', None)
+            day = self.request.query_params.get('day', None)
 
             if student is not None:
                 essays = Essay.objects.filter(user=user, student=student).order_by('official_dd')
+            elif upcoming is not None:
+                essays = Essay.objects.filter(user=user).order_by('official_dd')[:int(upcoming)]
+            elif day is not None:
+                start_date = datetime.datetime.strptime(day, '%Y-%m-%d')
+                end_date = start_date + datetime.timedelta(days=7)
+                essays = Essay.objects.filter(user=user, official_dd__range=[start_date, end_date])
             else:
                 essays = Essay.objects.filter(user=user).order_by('official_dd')
             
