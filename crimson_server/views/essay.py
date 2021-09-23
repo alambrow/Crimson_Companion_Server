@@ -17,19 +17,19 @@ class EssayView(ViewSet):
             is_complete = self.request.query_params.get('is_complete', None)
 
             if student is not None and is_complete is None:
-                essays = Essay.objects.filter(user=user, student=student, is_complete=False).order_by('official_dd')
+                essays = Essay.objects.filter(user=user, student=student, is_complete=False).order_by('floating_dd')
             elif upcoming is not None:
-                essays = Essay.objects.filter(user=user, is_complete=False).order_by('official_dd')[:int(upcoming)]
+                essays = Essay.objects.filter(user=user, is_complete=False).order_by('floating_dd')[:int(upcoming)]
             elif day is not None:
                 start_date = datetime.datetime.strptime(day, '%Y-%m-%d')
                 end_date = start_date + datetime.timedelta(days=7)
-                essays = Essay.objects.filter(user=user, official_dd__range=[start_date, end_date], is_complete=False)
+                essays = Essay.objects.filter(user=user, floating_dd__range=[start_date, end_date], is_complete=False)
             elif is_complete is not None and student is None:
-                essays = Essay.objects.filter(user=user, is_complete=is_complete).order_by('official_dd')
+                essays = Essay.objects.filter(user=user, is_complete=is_complete).order_by('floating_dd')
             elif is_complete is not None and student is not None:
-                essays = Essay.objects.filter(user=user, student=student, is_complete=is_complete).order_by('official_dd')
+                essays = Essay.objects.filter(user=user, student=student, is_complete=is_complete).order_by('floating_dd')
             else:
-                essays = Essay.objects.filter(user=user, is_complete=False).order_by('official_dd')
+                essays = Essay.objects.filter(user=user, is_complete=False).order_by('floating_dd')
             
             serializer = EssaySerializer(
                 essays, many=True, context={'request': request}
